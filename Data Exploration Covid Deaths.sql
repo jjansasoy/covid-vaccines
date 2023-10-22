@@ -1,7 +1,3 @@
---select *
---from ProjectPortfolio..CovidVaccinations$
---order by 3,4
-
 -- Select the data I'll be using
 
 select location, date, total_cases, total_deaths, new_cases, population 
@@ -93,7 +89,7 @@ Join ProjectPortfolio..CovidVaccinations$ vac
 where dea.continent is not null 
 order by 2,3
 
--- Shows Percentage of Population that has recieved at least one Covid Vaccine
+-- Shows Percentage of Population that has received at least one Covid Vaccine
 
 Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
 , SUM(Cast(vac.new_vaccinations as bigint)) OVER (Partition by dea.Location Order by dea.location, dea.Date) as RollingPeopleVaccinated
